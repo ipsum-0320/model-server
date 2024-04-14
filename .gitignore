@@ -170,3 +170,5 @@ run.spec
 *env
 
 dataset
+
+.DS_Store
