@@ -1,0 +1,57 @@
+task_name: long_term_forecast
+is_training: 0
+model_id: TimesNet-CDConv
+model: TimesNet
+
+data: custom
+features: MS
+target: target
+freq: t
+checkpoints: ./checkpoints/
+process_data: 0
+
+seq_len: 180
+label_len: 180
+pred_len: 30
+seasonal_patterns: Monthly
+inverse: false
+
+mask_rate: 0.25
+
+anomaly_ratio: 0.25
+
+top_k: 5
+num_kernels: 6
+enc_in: 13
+dec_in: 13
+c_out: 13
+d_model: 32
+n_heads: 8
+e_layers: 2
+d_layers: 1
+d_ff: 32
+moving_avg: 25
+factor: 1
+distil: true
+dropout: 0.1
+embed: timeF
+activation: gelu
+output_attention: false
+
+num_workers: 10
+itr: 1
+train_epochs: 10
+batch_size: -1
+patience: 3
+learning_rate: 0.0001
+des: Exp
+lradj: type1
+use_amp: false
+
+use_gpu: false
+gpu: 0
+use_multi_gpu: false
+devices: '0,1'
+
+p_hidden_dims: [128, 128]
+p_hidden_layers: 2
