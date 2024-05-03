@@ -103,7 +103,7 @@ def predict():
     return jsonify(res)
 
 
-@app.get("/alive")
+@app.get("/healthz")
 def alive():
   return "Alive!"
 
