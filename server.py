@@ -34,6 +34,7 @@ dry_run = False
 # 1. 抽离 predict，按 Zone_id 分类。
 # 2. 提前加载 model，避免每次请求都加载。
 # 3. 将公共的 predict 部分提取到 common 中，优化代码结构，提高代码复用性。
+# 4. 将请求中的 request file 使用 processor 强化一遍。
 
 @app.get("/healthz")
 def alive():
