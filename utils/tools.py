@@ -1,7 +1,6 @@
 import numpy as np
 import torch
 import matplotlib.pyplot as plt
-import matplotlib.backends.backend_pdf
 
 plt.switch_backend('agg')
 
