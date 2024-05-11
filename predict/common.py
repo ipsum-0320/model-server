@@ -1,17 +1,22 @@
 from config import config
-from utils import reader
+from utils import reader, csv_processor
 import torch
 import numpy as np
 from utils.metrics import metric
 
 
+def csv_process(file):
+    return csv_processor.excel_processor(file)
+
+
 def predict_common(files, model, dry_run):
+    final_file = csv_process(files['source'])
     if dry_run:
-        batch_x, batch_x_mark, true_x = reader.convert(files['source'], config, dry_run=dry_run, start=1080)
+        batch_x, batch_x_mark, true_x = reader.convert(final_file, config, dry_run=dry_run, start=1080)
         true_x = torch.tensor(true_x).unsqueeze(0)
         true_x = true_x.float().to(torch.device('cpu'))
     else:
-        batch_x, batch_x_mark = reader.convert(files['source'], config, dry_run=dry_run, start=0)
+        batch_x, batch_x_mark = reader.convert(final_file, config, dry_run=dry_run, start=0)
 
     batch_x = torch.tensor(batch_x).unsqueeze(0)
     batch_x_mark = torch.tensor(batch_x_mark).unsqueeze(0)
