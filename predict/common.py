@@ -76,3 +76,29 @@ def predict_common(files, model, dry_run):
                 'mspe': mspe.tolist()
             }
             return res
+
+
+def bounce(predict_list):
+    output_size = 30
+
+    ratio = 0.2
+    value = 200
+
+    threshold = int(value / (1 + ratio))
+
+    result = []
+
+    for val in predict_list:
+        if val < threshold:
+            result.append(int(val * (1 + ratio) + 0.5))
+        else:
+            result.append(int(val + value))
+
+    for i in range(0, len(result), output_size):
+        upper = min(len(result), i + output_size)
+        max_val = max(result[i:upper])
+
+        for j in range(i, upper):
+            result[j] = max_val
+
+    return result

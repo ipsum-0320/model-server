@@ -1,6 +1,6 @@
 from flask import request, jsonify, Blueprint
 from loading.huadong import huadong_models
-from predict.common import predict_common
+from predict.common import predict_common, bounce
 
 # 用来控制测试环境的参数。
 dry_run = True
@@ -14,6 +14,7 @@ def predict_huadong_hangzhou():
     files = request.files
     model = huadong_models['hangzhou']
     res = predict_common(files=files, model=model, dry_run=dry_run)
+    res = bounce(res)
     return jsonify(res)
 
 
@@ -23,4 +24,5 @@ def predict_huadong_ningbo():
     files = request.files
     model = huadong_models['ningbo']
     res = predict_common(files=files, model=model, dry_run=dry_run)
+    res = bounce(res)
     return jsonify(res)
