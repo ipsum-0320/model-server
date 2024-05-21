@@ -79,7 +79,7 @@ def predict_common(files, model, dry_run):
 
 
 def bounce(predict_list):
-    output_size = 30
+    output_size = 1
 
     ratio = 0.2
     value = 200
@@ -88,7 +88,7 @@ def bounce(predict_list):
 
     result = []
 
-    for val in predict_list:
+    for val in predict_list['pred']:
         if val < threshold:
             result.append(int(val * (1 + ratio) + 0.5))
         else:
@@ -101,4 +101,5 @@ def bounce(predict_list):
         for j in range(i, upper):
             result[j] = max_val
 
-    return result
+    predict_list['pred'] = result
+    return predict_list
