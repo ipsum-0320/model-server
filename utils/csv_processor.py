@@ -23,7 +23,7 @@ def excel_processor(file):
     for date in df['date']:
         date_list.append(date)
 
-    for value in df['target']:
+    for value in df['value']:
         value_list.append(value)
 
     for i in range(len(value_list)):
@@ -65,7 +65,7 @@ def excel_processor(file):
     df['deviation'] = "0"  # 用于记录标准差。
     df['isRest'] = "0"
 
-    df['target'] = df['value']
+    df['value'] = df['value']
     df.drop("value", axis=1, inplace=True)
 
     for i, item in enumerate(df_with_day_of_week['day_of_week']):
@@ -77,17 +77,17 @@ def excel_processor(file):
         if is_holiday(datetime_item):
             df['isRest'][i] = "1"
 
-    boundary = len(df['target'])
-    for i, item in enumerate(df['target']):
+    boundary = len(df['value'])
+    for i, item in enumerate(df['value']):
         if slope_flag == 0:
             x = list(range((i - 10 if i - 10 >= 0 else 0), (i + 11 if i + 11 <= boundary else boundary)))
-            y = df['target'][(i - 10 if i - 10 >= 0 else 0):(i + 11 if i + 11 <= boundary else boundary)].values
+            y = df['value'][(i - 10 if i - 10 >= 0 else 0):(i + 11 if i + 11 <= boundary else boundary)].values
         elif slope_flag == 1:
             x = list(range((i - 10 if i - 10 >= 0 else 0), (i + 1 if i + 1 <= boundary else boundary)))
-            y = df['target'][(i - 10 if i - 10 >= 0 else 0):(i + 1 if i + 1 <= boundary else boundary)].values
+            y = df['value'][(i - 10 if i - 10 >= 0 else 0):(i + 1 if i + 1 <= boundary else boundary)].values
         else:
             x = list(range(i, (i + 11 if i + 11 <= boundary else boundary)))
-            y = df['target'][i:(i + 11 if i + 11 <= boundary else boundary)].values
+            y = df['value'][i:(i + 11 if i + 11 <= boundary else boundary)].values
         slope = stats.linregress(x, y).slope
         _range = np.max(y) - np.min(y)
         deviation = np.std(y)

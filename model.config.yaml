@@ -5,7 +5,7 @@ model: TimesNet
 
 data: custom
 features: MS
-target: target
+target: value
 freq: t
 checkpoints: ./checkpoints/
 process_data: 0
