@@ -3,7 +3,7 @@ from loading.xibei import xibei_models
 from predict.common import predict_common, bounce
 
 # 用来控制测试环境的参数。
-dry_run = True
+dry_run = False
 
 xibei = Blueprint('xibei', __name__)
 
