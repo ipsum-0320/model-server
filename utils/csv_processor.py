@@ -44,7 +44,7 @@ def excel_processor(file):
 
     df_map = {
         "date": date_list,
-        "value": value_list
+        "target": value_list
     }
     df = DataFrame(df_map)
 
@@ -65,8 +65,8 @@ def excel_processor(file):
     df['deviation'] = "0"  # 用于记录标准差。
     df['isRest'] = "0"
 
-    df['value'] = df['value']
-    df.drop("value", axis=1, inplace=True)
+    df['value'] = df['target']
+    df.drop("target", axis=1, inplace=True)
 
     for i, item in enumerate(df_with_day_of_week['day_of_week']):
         df["is{}".format(item)][i] = "1"
