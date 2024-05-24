@@ -20,8 +20,7 @@ def convert(file, config, dry_run=False, start=0):
     if dry_run:
         df_stamp = df_raw[['date']][start:start + 180]
     else:
-        # TODO: 需要更改为 df_raw[['date']][:]
-        df_stamp = df_raw[['date']][1080:1260]
+        df_stamp = df_raw[['date']][:]
     df_stamp['date'] = pd.to_datetime(df_stamp.date)
 
     data_stamp = time_features(pd.to_datetime(df_stamp['date'].values), freq=config.freq)
@@ -31,8 +30,7 @@ def convert(file, config, dry_run=False, start=0):
         true_x = data[start + 180:start + 210]
         return data_x, data_stamp, true_x
     else:
-        # TODO: 需要更改为 data[:]
-        data_x = data[1080:1260]
+        data_x = data[:]
         return data_x, data_stamp
 
 
