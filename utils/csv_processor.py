@@ -20,6 +20,9 @@ def excel_processor(file):
 
     df = pd.read_csv(file)
 
+    print('input data')
+    print(df)
+
     for date in df['date']:
         date_list.append(date)
 
