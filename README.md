@@ -33,3 +33,5 @@ python server.py
 ```
 
 如果想要切换模型，可以修改 checkpoints 中的 *.pth 文件。
+
+python version: 3.9.6
