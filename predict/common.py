@@ -81,8 +81,8 @@ def predict_common(files, model, dry_run):
 def bounce(predict_list):
     output_size = 1
 
-    ratio = 0.2
-    value = 200
+    ratio = 0.05
+    value = 50
 
     threshold = int(value / (1 + ratio))
 
